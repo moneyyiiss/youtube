@@ -1,0 +1,21 @@
+class Solution {
+    public long countGood(int[] nums, int k) {
+        HashMap<Integer, Integer> map = new HashMap<>();
+        int si = 0;
+        int ei = 0;
+        int pair = 0;
+        long ans = 0;
+        while(ei < nums.length){
+            map.put(nums[ei], map.getOrDefault(nums[ei], 0)+1);
+            pair+=map.get(nums[ei]) - 1;
+            while(pair >= k){
+                ans+=(nums.length - ei);
+                pair-=map.get(nums[si]) - 1;
+                map.put(nums[si], map.getOrDefault(nums[si], 0) - 1);
+                si++;
+            }
+            ei++;
+        }
+        return ans;
+    }
+}
