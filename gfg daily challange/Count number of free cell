@@ -1,0 +1,28 @@
+//https://practice.geeksforgeeks.org/problems/90a81c305b1fe939b9230a67824749ceaa493eab/1
+class Solution {
+    long[] countZero(int N, int K, int[][] arr){
+        // code here
+        boolean[] row = new boolean[N];
+        boolean[] col = new boolean[N];
+        long[] res = new long[K];
+        
+        int rowCount = 0;
+        int colCount = 0;
+        
+        for (int i = 0; i < K; i++) {
+            int r = arr[i][0] - 1;
+            int c = arr[i][1] - 1;
+            if (!row[r]) {
+                row[r] = true;
+                rowCount++;
+            }
+            if (!col[c]) {
+                col[c] = true;
+                colCount++;
+            }
+            res[i] = (N - rowCount) * (N - colCount);
+        }
+        
+        return res;
+    }
+}
